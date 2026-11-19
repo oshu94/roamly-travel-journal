@@ -1,10 +1,735 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roamly</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venice | Roamly</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f5ef;
+            color: #283b32;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 7%;
+            background: #f7f5ef;
+            border-bottom: 1px solid #e4e1d8;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: #626b62;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #344e40;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            height: 590px;
+            background:
+                linear-gradient(rgba(20, 35, 29, 0.25), rgba(20, 35, 29, 0.55)),
+                url('https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=2000&q=85');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 70px 9%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(55px, 8vw, 95px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            max-width: 500px;
+            color: #f1eee6;
+        }
+
+        /* INTRO */
+
+        .intro {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .section-label {
+            color: #a07858;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .intro h2,
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 45px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .intro p {
+            color: #777d74;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .facts {
+            background: #eaece3;
+            padding: 35px;
+        }
+
+        .fact {
+            padding: 15px 0;
+            border-bottom: 1px solid #d4d9ce;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+
+        .fact:last-child {
+            border-bottom: none;
+        }
+
+        .fact span:first-child {
+            color: #777d74;
+        }
+
+        .fact span:last-child {
+            font-weight: 600;
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 80px 9%;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin-bottom: 45px;
+        }
+
+        .section-heading p {
+            color: #777d74;
+            font-size: 14px;
+        }
+
+        /* ATTRACTIONS */
+
+        .attraction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .attraction-card img {
+            height: 310px;
+            margin-bottom: 20px;
+        }
+
+        .attraction-card h3,
+        .food-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .attraction-card p,
+        .food-card p {
+            font-size: 13px;
+            color: #777d74;
+        }
+
+        /* FOOD */
+
+        .food-section {
+            background: #eaece3;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .food-card img {
+            height: 210px;
+            margin-bottom: 17px;
+        }
+
+        .food-card h3 {
+            font-size: 21px;
+        }
+
+        /* CULTURE */
+
+        .culture {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .culture img {
+            height: 480px;
+        }
+
+        .culture-content p {
+            color: #777d74;
+            font-size: 14px;
+            margin-bottom: 17px;
+        }
+
+        .culture-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 43px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        /* SEASONS */
+
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .season {
+            border-top: 2px solid #a07858;
+            padding-top: 20px;
+        }
+
+        .season h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .season p {
+            color: #777d74;
+            font-size: 13px;
+        }
+
+        /* QUOTE */
+
+        .quote {
+            padding: 110px 10%;
+            text-align: center;
+            background: #344e40;
+            color: #f7f5ef;
+        }
+
+        .quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(27px, 4vw, 42px);
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.4;
+        }
+
+        .quote span {
+            display: block;
+            margin-top: 25px;
+            color: #c6cbbf;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #263a30;
+            color: #f7f5ef;
+            padding: 55px 9% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            padding-bottom: 35px;
+        }
+
+        .footer-brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #c2c9bf;
+            font-size: 13px;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #d0d5cc;
+        }
+
+        .copyright {
+            border-top: 1px solid #526357;
+            padding-top: 20px;
+            color: #b9c1b7;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .intro {
+                gap: 35px;
+                padding: 70px 7%;
+            }
+
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .culture {
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero {
+                height: 480px;
+                padding: 45px 7%;
+            }
+
+            .intro,
+            .culture {
+                grid-template-columns: 1fr;
+            }
+
+            .intro h2,
+            .section-heading h2,
+            .culture-content h2 {
+                font-size: 35px;
+            }
+
+            .attraction-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .attraction-card img {
+                height: 250px;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px 15px;
+            }
+
+            .food-card img {
+                height: 160px;
+            }
+
+            .season-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 20px;
+            }
+
+            .culture img {
+                height: 300px;
+            }
+
+            .section {
+                padding: 65px 7%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Page Coming Soon</h1>
-    <a href="index.html">Back to Home</a>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <a href="index.html" class="logo">Roamly.</a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html" class="active">Explore</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="itineraries.html">Itineraries</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="eyebrow">Italy · Europe</div>
+            <h1>Venice</h1>
+            <p>A city of winding canals, timeless architecture and unforgettable moments on the water.</p>
+        </div>
+    </header>
+
+    <!-- INTRODUCTION -->
+
+    <section class="intro">
+        <div>
+            <div class="section-label">The floating city</div>
+            <h2>Where every street leads to a story.</h2>
+
+            <p>
+                Built across a collection of small islands in northeastern Italy,
+                Venice is one of the world's most extraordinary cities. Instead
+                of ordinary roads, its historic centre is shaped by canals,
+                bridges and narrow walkways.
+            </p>
+
+            <p>
+                From quiet mornings beside the water to lively evenings in
+                historic squares, Venice offers an atmosphere unlike anywhere
+                else.
+            </p>
+        </div>
+
+        <div class="facts">
+            <div class="fact">
+                <span>Country</span>
+                <span>Italy</span>
+            </div>
+
+            <div class="fact">
+                <span>Language</span>
+                <span>Italian</span>
+            </div>
+
+            <div class="fact">
+                <span>Currency</span>
+                <span>Euro (€)</span>
+            </div>
+
+            <div class="fact">
+                <span>Best time</span>
+                <span>April – June</span>
+            </div>
+
+            <div class="fact">
+                <span>Known for</span>
+                <span>Canals & Architecture</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATTRACTIONS -->
+
+    <section class="section">
+        <div class="section-heading">
+            <div class="section-label">Places to discover</div>
+            <h2>Venice, one beautiful corner at a time.</h2>
+            <p>
+                Explore the landmarks and hidden corners that make this city
+                so memorable.
+            </p>
+        </div>
+
+        <div class="attraction-grid">
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=1000&q=85" alt="Venice Grand Canal">
+                <h3>Grand Canal</h3>
+                <p>
+                    The city's main waterway, lined with historic buildings
+                    and beautiful bridges.
+                </p>
+            </div>
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=85" alt="Venice historic architecture">
+                <h3>St. Mark's Square</h3>
+                <p>
+                    A remarkable public square surrounded by historic
+                    architecture and lively cafés.
+                </p>
+            </div>
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1511316695145-4992006ffddb?auto=format&fit=crop&w=1000&q=85" alt="Venice canal and bridge">
+                <h3>Rialto Bridge</h3>
+                <p>
+                    One of Venice's most recognised bridges, offering
+                    beautiful views over the Grand Canal.
+                </p>
+            </div>
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1000&q=85" alt="Venice gondola">
+                <h3>Gondola Ride</h3>
+                <p>
+                    Experience the city from its waterways and discover
+                    quieter canals along the way.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOD -->
+
+    <section class="section food-section">
+        <div class="section-heading">
+            <div class="section-label">A taste of Venice</div>
+            <h2>Flavours worth travelling for.</h2>
+            <p>
+                Venetian food reflects its history, coastal location
+                and traditional Italian cooking.
+            </p>
+        </div>
+
+        <div class="food-grid">
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=85" alt="Italian pasta">
+                <h3>Bigoli</h3>
+                <p>A traditional thick Venetian pasta, often served with rich sauces.</p>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=85" alt="Italian seafood dish">
+                <h3>Seafood</h3>
+                <p>Fresh seafood inspired by the city's connection to the Adriatic Sea.</p>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=85" alt="Italian fresh food">
+                <h3>Cicchetti</h3>
+                <p>Small Venetian bites traditionally enjoyed in local wine bars.</p>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=85" alt="Italian dessert">
+                <h3>Tiramisu</h3>
+                <p>A famous Italian dessert made with coffee, cream and cocoa.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CULTURE -->
+
+    <section class="section">
+        <div class="culture">
+
+            <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1000&q=85" alt="Venice canal view">
+
+            <div class="culture-content">
+                <div class="section-label">Culture & experiences</div>
+                <h2>A city that moves at its own pace.</h2>
+
+                <p>
+                    Venice is known for its artistic heritage, historic
+                    architecture, traditional crafts and beautiful waterways.
+                </p>
+
+                <p>
+                    Discover the city's glassmaking traditions on Murano Island,
+                    explore the colourful streets of Burano, or simply spend
+                    an afternoon walking through its quieter neighbourhoods.
+                </p>
+
+                <p>
+                    Every bridge, courtyard and canal offers another reason
+                    to slow down and explore.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEASONS -->
+
+    <section class="section">
+        <div class="section-heading">
+            <div class="section-label">Plan your visit</div>
+            <h2>Venice through the seasons.</h2>
+            <p>
+                Every season brings a different atmosphere to the city.
+            </p>
+        </div>
+
+        <div class="season-grid">
+
+            <div class="season">
+                <h3>Spring</h3>
+                <p>March – May</p>
+                <p>Mild weather and pleasant conditions for walking around the city.</p>
+            </div>
+
+            <div class="season">
+                <h3>Summer</h3>
+                <p>June – August</p>
+                <p>Long sunny days, lively streets and a busy tourist season.</p>
+            </div>
+
+            <div class="season">
+                <h3>Autumn</h3>
+                <p>September – November</p>
+                <p>Cooler temperatures and a calmer atmosphere after summer.</p>
+            </div>
+
+            <div class="season">
+                <h3>Winter</h3>
+                <p>December – February</p>
+                <p>Quiet canals, colder weather and a unique winter atmosphere.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- QUOTE -->
+
+    <section class="quote">
+        <p>
+            "Venice is not just a place to visit. It is a place to experience,
+            remember and carry with you."
+        </p>
+        <span>Discover Venice with Roamly</span>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <h2>Roamly.</h2>
+                <p>
+                    Collect moments, discover places and create
+                    stories worth remembering.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="stories.html">Stories</a>
+                <a href="itineraries.html">Itineraries</a>
+                <a href="journal.html">Journal</a>
+                <a href="about.html">About</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Roamly. All rights reserved.
+        </div>
+    </footer>
+
 </body>
 </html>

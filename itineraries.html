@@ -1,10 +1,827 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roamly</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Itineraries | Roamly</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f5ef;
+            color: #283b32;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 7%;
+            background: #f7f5ef;
+            border-bottom: 1px solid #e4e1d8;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: #626b62;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #344e40;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 100px 9% 90px;
+            text-align: center;
+            background: #eaece3;
+        }
+
+        .eyebrow {
+            color: #a07858;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(45px, 7vw, 76px);
+            font-weight: 500;
+            line-height: 1.15;
+            max-width: 850px;
+            margin: 0 auto 22px;
+        }
+
+        .hero p {
+            color: #777d74;
+            font-size: 15px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* INTRO */
+
+        .intro {
+            padding: 80px 9%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro img {
+            height: 390px;
+        }
+
+        .section-label {
+            color: #a07858;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .intro h2,
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 43px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #777d74;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* GENERAL SECTION */
+
+        .section {
+            padding: 80px 9%;
+        }
+
+        .section-heading {
+            margin-bottom: 40px;
+        }
+
+        .section-heading p {
+            color: #777d74;
+            font-size: 14px;
+            max-width: 550px;
+        }
+
+        /* ITINERARY CARDS */
+
+        .trip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .trip-card {
+            background: #fffefa;
+            border: 1px solid #ebe8df;
+        }
+
+        .trip-card img {
+            height: 240px;
+        }
+
+        .trip-content {
+            padding: 24px;
+        }
+
+        .trip-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #a07858;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .trip-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .trip-content p {
+            font-size: 13px;
+            color: #777d74;
+            margin-bottom: 18px;
+        }
+
+        .trip-details {
+            display: flex;
+            gap: 18px;
+            border-top: 1px solid #e9e6dc;
+            padding-top: 15px;
+            margin-bottom: 18px;
+            font-size: 11px;
+            color: #777d74;
+        }
+
+        .trip-link {
+            display: inline-block;
+            color: #344e40;
+            border-bottom: 1px solid #344e40;
+            padding-bottom: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* DAY PLAN */
+
+        .day-section {
+            background: #eaece3;
+        }
+
+        .day-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 70px;
+        }
+
+        .day-image {
+            height: 530px;
+            position: sticky;
+            top: 30px;
+        }
+
+        .day-image img {
+            height: 100%;
+        }
+
+        .day-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-item {
+            padding: 24px 0;
+            border-bottom: 1px solid #d1d7ca;
+        }
+
+        .day-number {
+            color: #a07858;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .day-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .day-item p {
+            font-size: 13px;
+            color: #777d74;
+        }
+
+        /* TRAVEL TIPS */
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .tip {
+            padding: 28px;
+            border: 1px solid #dedfd6;
+        }
+
+        .tip h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .tip p {
+            font-size: 13px;
+            color: #777d74;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: #344e40;
+            color: #f7f5ef;
+            text-align: center;
+            padding: 95px 9%;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 45px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #d1d8cf;
+            font-size: 14px;
+            max-width: 550px;
+            margin: 0 auto 28px;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: #f7f5ef;
+            color: #344e40;
+            padding: 13px 27px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #263a30;
+            color: #f7f5ef;
+            padding: 55px 9% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            padding-bottom: 35px;
+        }
+
+        .footer-brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #c2c9bf;
+            font-size: 13px;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #d0d5cc;
+        }
+
+        .copyright {
+            border-top: 1px solid #526357;
+            padding-top: 20px;
+            color: #b9c1b7;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .trip-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .day-layout {
+                gap: 35px;
+            }
+
+            .tips-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 70px 7%;
+            }
+
+            .intro,
+            .day-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .intro h2,
+            .section-heading h2,
+            .cta h2 {
+                font-size: 35px;
+            }
+
+            .intro img {
+                height: 280px;
+            }
+
+            .trip-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .day-image {
+                height: 300px;
+                position: static;
+            }
+
+            .section {
+                padding: 60px 7%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Page Coming Soon</h1>
-    <a href="index.html">Back to Home</a>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <a href="index.html" class="logo">Roamly.</a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="itineraries.html" class="active">Itineraries</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <header class="hero">
+        <div class="eyebrow">Plan your next journey</div>
+
+        <h1>Less planning. More discovering.</h1>
+
+        <p>
+            Thoughtfully designed travel itineraries to help you
+            experience more, explore better and make every day count.
+        </p>
+    </header>
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+        <div>
+            <div class="section-label">Travel your way</div>
+
+            <h2>Every great journey begins with a good plan.</h2>
+
+            <p>
+                Whether you have a weekend or an entire week,
+                the right itinerary can make your travel experience
+                more meaningful.
+            </p>
+
+            <p>
+                Explore curated travel plans featuring iconic landmarks,
+                local experiences, food discoveries and moments
+                worth slowing down for.
+            </p>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=85" alt="Beautiful travel destination beside a lake">
+
+    </section>
+
+    <!-- FEATURED ITINERARIES -->
+
+    <section class="section">
+
+        <div class="section-heading">
+            <div class="section-label">Curated travel plans</div>
+
+            <h2>Find a journey that feels right.</h2>
+
+            <p>
+                Explore travel plans designed around different
+                destinations and experiences.
+            </p>
+        </div>
+
+        <div class="trip-grid">
+
+            <article class="trip-card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="Paris city">
+
+                <div class="trip-content">
+                    <div class="trip-meta">
+                        <span>France</span>
+                        <span>Europe</span>
+                    </div>
+
+                    <h3>Paris in Three Days</h3>
+
+                    <p>
+                        Discover iconic architecture, charming cafés,
+                        art galleries and beautiful Parisian streets.
+                    </p>
+
+                    <div class="trip-details">
+                        <span>3 Days</span>
+                        <span>City & Culture</span>
+                    </div>
+
+                    <a href="paris.html" class="trip-link">Explore Paris</a>
+                </div>
+            </article>
+
+            <article class="trip-card">
+                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=85" alt="Kyoto Japan">
+
+                <div class="trip-content">
+                    <div class="trip-meta">
+                        <span>Japan</span>
+                        <span>Asia</span>
+                    </div>
+
+                    <h3>Kyoto in Four Days</h3>
+
+                    <p>
+                        Experience peaceful temples, traditional
+                        neighbourhoods and Japanese food culture.
+                    </p>
+
+                    <div class="trip-details">
+                        <span>4 Days</span>
+                        <span>Culture & Nature</span>
+                    </div>
+
+                    <a href="kyoto.html" class="trip-link">Explore Kyoto</a>
+                </div>
+            </article>
+
+            <article class="trip-card">
+                <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=900&q=85" alt="Venice Italy">
+
+                <div class="trip-content">
+                    <div class="trip-meta">
+                        <span>Italy</span>
+                        <span>Europe</span>
+                    </div>
+
+                    <h3>Venice in Two Days</h3>
+
+                    <p>
+                        Wander along canals, explore historic squares
+                        and discover the city's timeless charm.
+                    </p>
+
+                    <div class="trip-details">
+                        <span>2 Days</span>
+                        <span>Architecture & Art</span>
+                    </div>
+
+                    <a href="venice.html" class="trip-link">Explore Venice</a>
+                </div>
+            </article>
+
+            <article class="trip-card">
+                <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=900&q=85" alt="Jaipur Rajasthan">
+
+                <div class="trip-content">
+                    <div class="trip-meta">
+                        <span>India</span>
+                        <span>Asia</span>
+                    </div>
+
+                    <h3>Jaipur in Three Days</h3>
+
+                    <p>
+                        Discover royal palaces, traditional markets,
+                        historic forts and authentic Rajasthani food.
+                    </p>
+
+                    <div class="trip-details">
+                        <span>3 Days</span>
+                        <span>Heritage & Food</span>
+                    </div>
+
+                    <a href="jaipur.html" class="trip-link">Explore Jaipur</a>
+                </div>
+            </article>
+
+            <article class="trip-card">
+                <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85" alt="Mountain lake">
+
+                <div class="trip-content">
+                    <div class="trip-meta">
+                        <span>Nature</span>
+                        <span>Adventure</span>
+                    </div>
+
+                    <h3>A Weekend in Nature</h3>
+
+                    <p>
+                        Spend time away from busy city life
+                        and reconnect with beautiful landscapes.
+                    </p>
+
+                    <div class="trip-details">
+                        <span>2 Days</span>
+                        <span>Nature & Relaxation</span>
+                    </div>
+
+                    <a href="explore.html" class="trip-link">Explore destinations</a>
+                </div>
+            </article>
+
+            <article class="trip-card">
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85" alt="Scenic travel road">
+
+                <div class="trip-content">
+                    <div class="trip-meta">
+                        <span>Adventure</span>
+                        <span>Travel</span>
+                    </div>
+
+                    <h3>The Art of Slow Travel</h3>
+
+                    <p>
+                        Take your time, explore local neighbourhoods
+                        and enjoy experiences beyond the usual attractions.
+                    </p>
+
+                    <div class="trip-details">
+                        <span>5 Days</span>
+                        <span>Slow Travel</span>
+                    </div>
+
+                    <a href="explore.html" class="trip-link">Find inspiration</a>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- SAMPLE DAY-WISE PLAN -->
+
+    <section class="section day-section">
+
+        <div class="section-heading">
+            <div class="section-label">A closer look</div>
+            <h2>Example: Three days in Paris.</h2>
+
+            <p>
+                A simple day-wise travel plan to help you
+                make the most of your time in the city.
+            </p>
+        </div>
+
+        <div class="day-layout">
+
+            <div class="day-image">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=85" alt="Paris Eiffel Tower">
+            </div>
+
+            <div class="day-list">
+
+                <div class="day-item">
+                    <div class="day-number">Day 01 · The Classics</div>
+                    <h3>Discover the heart of Paris.</h3>
+                    <p>
+                        Begin with the Eiffel Tower, enjoy a walk
+                        along the Seine and spend the evening
+                        discovering the city's beautiful streets.
+                    </p>
+                </div>
+
+                <div class="day-item">
+                    <div class="day-number">Day 02 · Art & Culture</div>
+                    <h3>A day surrounded by art.</h3>
+                    <p>
+                        Visit the Louvre, explore historic architecture
+                        and spend time in the charming neighbourhood
+                        of Montmartre.
+                    </p>
+                </div>
+
+                <div class="day-item">
+                    <div class="day-number">Day 03 · Local Experiences</div>
+                    <h3>Experience everyday Paris.</h3>
+                    <p>
+                        Enjoy a relaxed café breakfast, explore local
+                        markets, discover small boutiques and finish
+                        the trip with a peaceful evening walk.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TRAVEL TIPS -->
+
+    <section class="section">
+
+        <div class="section-heading">
+            <div class="section-label">Travel smarter</div>
+            <h2>A few things to remember.</h2>
+        </div>
+
+        <div class="tips-grid">
+
+            <div class="tip">
+                <h3>Plan, but stay flexible.</h3>
+                <p>
+                    Keep a basic schedule while leaving room
+                    for spontaneous discoveries.
+                </p>
+            </div>
+
+            <div class="tip">
+                <h3>Understand the local culture.</h3>
+                <p>
+                    Learn about local customs, traditions
+                    and respectful travel practices.
+                </p>
+            </div>
+
+            <div class="tip">
+                <h3>Leave time to explore.</h3>
+                <p>
+                    Do not fill every hour. Sometimes the
+                    best experiences happen unexpectedly.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <h2>Your next story starts somewhere.</h2>
+
+        <p>
+            Discover destinations, find inspiration
+            and start planning your next memorable journey.
+        </p>
+
+        <a href="explore.html">Explore Destinations</a>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <h2>Roamly.</h2>
+
+                <p>
+                    Collect moments, discover places and create
+                    stories worth remembering.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="stories.html">Stories</a>
+                <a href="itineraries.html">Itineraries</a>
+                <a href="journal.html">Journal</a>
+                <a href="about.html">About</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Roamly. All rights reserved.
+        </div>
+
+    </footer>
+
 </body>
 </html>

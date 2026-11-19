@@ -1,10 +1,680 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roamly</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Stories | Roamly</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f5ef;
+            color: #283b32;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 7%;
+            background: #f7f5ef;
+            border-bottom: 1px solid #e4e1d8;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: #626b62;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #344e40;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 95px 9% 80px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: #a07858;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(45px, 7vw, 76px);
+            font-weight: 500;
+            line-height: 1.15;
+            max-width: 850px;
+            margin: 0 auto 22px;
+        }
+
+        .hero p {
+            color: #777d74;
+            font-size: 15px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* FEATURED STORY */
+
+        .featured {
+            padding: 20px 9% 90px;
+        }
+
+        .featured-image {
+            height: 540px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            height: 100%;
+            transition: transform 0.6s;
+        }
+
+        .featured-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .featured-content {
+            max-width: 760px;
+            margin: -75px 0 0 7%;
+            position: relative;
+            background: #f7f5ef;
+            padding: 38px 45px;
+        }
+
+        .category {
+            color: #a07858;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .featured-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 39px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .featured-content p {
+            color: #777d74;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #344e40;
+            font-size: 12px;
+            font-weight: 700;
+            border-bottom: 1px solid #344e40;
+            padding-bottom: 4px;
+        }
+
+        /* SECTION HEADING */
+
+        .section {
+            padding: 80px 9%;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .section-label {
+            color: #a07858;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 43px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            color: #777d74;
+            font-size: 13px;
+            max-width: 300px;
+        }
+
+        /* STORY GRID */
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .story-card {
+            background: transparent;
+        }
+
+        .story-card img {
+            height: 260px;
+            margin-bottom: 20px;
+            transition: transform 0.4s;
+        }
+
+        .story-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .story-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .story-card p {
+            color: #777d74;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .story-meta {
+            color: #a07858;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* QUOTE BANNER */
+
+        .quote-banner {
+            background: #344e40;
+            color: #f7f5ef;
+            text-align: center;
+            padding: 100px 10%;
+        }
+
+        .quote-banner p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(27px, 4vw, 43px);
+            line-height: 1.4;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .quote-banner span {
+            display: block;
+            margin-top: 25px;
+            color: #c6cbbf;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* NEWSLETTER */
+
+        .newsletter {
+            text-align: center;
+            padding: 100px 9%;
+        }
+
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 43px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            color: #777d74;
+            font-size: 14px;
+            max-width: 500px;
+            margin: 0 auto 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 450px;
+            margin: auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px 17px;
+            border: 1px solid #d9d9cf;
+            background: transparent;
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: #344e40;
+            color: white;
+            border: none;
+            padding: 14px 22px;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #263a30;
+            color: #f7f5ef;
+            padding: 55px 9% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            padding-bottom: 35px;
+        }
+
+        .footer-brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #c2c9bf;
+            font-size: 13px;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #d0d5cc;
+        }
+
+        .copyright {
+            border-top: 1px solid #526357;
+            padding-top: 20px;
+            color: #b9c1b7;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .story-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-image {
+                height: 420px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 70px 7%;
+            }
+
+            .featured {
+                padding: 10px 7% 60px;
+            }
+
+            .featured-image {
+                height: 300px;
+            }
+
+            .featured-content {
+                margin: -35px 0 0;
+                padding: 25px 20px;
+            }
+
+            .featured-content h2 {
+                font-size: 30px;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-card img {
+                height: 260px;
+            }
+
+            .section {
+                padding: 60px 7%;
+            }
+
+            .section-heading h2,
+            .newsletter h2 {
+                font-size: 34px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Page Coming Soon</h1>
-    <a href="index.html">Back to Home</a>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <a href="index.html" class="logo">Roamly.</a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="stories.html" class="active">Stories</a></li>
+            <li><a href="itineraries.html">Itineraries</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <header class="hero">
+        <div class="eyebrow">The Roamly Journal</div>
+
+        <h1>Every journey has a story worth telling.</h1>
+
+        <p>
+            Discover places through the experiences, memories
+            and perspectives of travellers around the world.
+        </p>
+    </header>
+
+    <!-- FEATURED STORY -->
+
+    <section class="featured">
+
+        <div class="featured-image">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85" alt="Beautiful mountain travel landscape">
+        </div>
+
+        <div class="featured-content">
+            <div class="category">Editor's Pick · Travel Inspiration</div>
+
+            <h2>Finding beauty in the places we least expect.</h2>
+
+            <p>
+                Sometimes the most memorable moments happen away from
+                famous landmarks. They live in quiet streets, unexpected
+                conversations and the beauty of slowing down.
+            </p>
+
+            <a href="#latest-stories" class="read-more">Explore stories</a>
+        </div>
+
+    </section>
+
+    <!-- LATEST STORIES -->
+
+    <section class="section" id="latest-stories">
+
+        <div class="section-heading">
+            <div>
+                <div class="section-label">From around the world</div>
+                <h2>Stories to take you places.</h2>
+            </div>
+
+            <p>
+                A collection of travel experiences,
+                discoveries and unforgettable moments.
+            </p>
+        </div>
+
+        <div class="story-grid">
+
+            <article class="story-card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="Paris city view">
+
+                <div class="story-meta">Europe · 6 min read</div>
+
+                <h3>Slow mornings and long evenings in Paris.</h3>
+
+                <p>
+                    Discover the charm of Paris through its cafés,
+                    beautiful streets and everyday moments.
+                </p>
+
+                <a href="paris.html" class="read-more">Discover Paris</a>
+            </article>
+
+            <article class="story-card">
+                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=85" alt="Kyoto traditional street">
+
+                <div class="story-meta">Asia · 5 min read</div>
+
+                <h3>Discovering the quiet beauty of Kyoto.</h3>
+
+                <p>
+                    A journey through traditional streets,
+                    peaceful gardens and Japanese culture.
+                </p>
+
+                <a href="kyoto.html" class="read-more">Discover Kyoto</a>
+            </article>
+
+            <article class="story-card">
+                <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=900&q=85" alt="Venice canal">
+
+                <div class="story-meta">Europe · 7 min read</div>
+
+                <h3>Life moves differently along the canals of Venice.</h3>
+
+                <p>
+                    Explore the romantic atmosphere and timeless
+                    character of the floating city.
+                </p>
+
+                <a href="venice.html" class="read-more">Discover Venice</a>
+            </article>
+
+            <article class="story-card">
+                <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=900&q=85" alt="Jaipur architecture">
+
+                <div class="story-meta">Asia · 8 min read</div>
+
+                <h3>The colours, culture and royal charm of Jaipur.</h3>
+
+                <p>
+                    Explore Rajasthan's rich heritage,
+                    beautiful architecture and local traditions.
+                </p>
+
+                <a href="jaipur.html" class="read-more">Discover Jaipur</a>
+            </article>
+
+            <article class="story-card">
+                <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85" alt="Mountain lake">
+
+                <div class="story-meta">Nature · 4 min read</div>
+
+                <h3>Why every traveller needs a little time in nature.</h3>
+
+                <p>
+                    Finding peace in mountain landscapes,
+                    open skies and quiet surroundings.
+                </p>
+
+                <a href="explore.html" class="read-more">Explore destinations</a>
+            </article>
+
+            <article class="story-card">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85" alt="Mountain landscape">
+
+                <div class="story-meta">Adventure · 6 min read</div>
+
+                <h3>The unforgettable feeling of discovering somewhere new.</h3>
+
+                <p>
+                    A reminder that travelling is as much
+                    about the journey as the destination.
+                </p>
+
+                <a href="explore.html" class="read-more">Find your next journey</a>
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- QUOTE -->
+
+    <section class="quote-banner">
+        <p>
+            "We travel not only to see new places,
+            but to discover new ways of looking at the world."
+        </p>
+
+        <span>Roamly · Travel Stories</span>
+    </section>
+
+    <!-- NEWSLETTER -->
+
+    <section class="newsletter">
+        <div class="section-label">Stay inspired</div>
+
+        <h2>Let the stories find you.</h2>
+
+        <p>
+            Get travel inspiration, destination ideas
+            and stories worth remembering.
+        </p>
+
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for your interest in Roamly!');">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <h2>Roamly.</h2>
+
+                <p>
+                    Collect moments, discover places and create
+                    stories worth remembering.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="stories.html">Stories</a>
+                <a href="itineraries.html">Itineraries</a>
+                <a href="journal.html">Journal</a>
+                <a href="about.html">About</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Roamly. All rights reserved.
+        </div>
+
+    </footer>
+
 </body>
 </html>

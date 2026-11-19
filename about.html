@@ -1,10 +1,554 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roamly</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Roamly</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f5ef;
+            color: #283b32;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            border-bottom: 1px solid #e5e3da;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: #626a61;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #344e40;
+            font-weight: 700;
+        }
+
+        .hero {
+            padding: 85px 8% 70px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: #a07858;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 58px;
+            font-weight: 500;
+            margin: 20px 0;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            color: #777d74;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .hero-image {
+            width: 84%;
+            height: 430px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 65px;
+            align-items: center;
+            padding: 100px 10%;
+        }
+
+        .story-image {
+            height: 430px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 500;
+            margin: 18px 0;
+        }
+
+        .story-content p {
+            color: #777d74;
+            font-size: 14px;
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+
+        .mission {
+            background: #eaece3;
+            padding: 90px 12%;
+            text-align: center;
+        }
+
+        .mission h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 500;
+            margin: 18px 0;
+        }
+
+        .mission p {
+            max-width: 760px;
+            margin: auto;
+            color: #69736a;
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .values {
+            padding: 90px 8%;
+        }
+
+        .values-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .values-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .value-card {
+            background: #fff;
+            padding: 35px 28px;
+            border-radius: 5px;
+            border-top: 2px solid #a07858;
+        }
+
+        .value-number {
+            color: #a07858;
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+        }
+
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 500;
+            margin: 18px 0 12px;
+        }
+
+        .value-card p {
+            color: #777d74;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #344e40;
+            color: #f7f5ef;
+            align-items: center;
+        }
+
+        .vision-image {
+            height: 420px;
+        }
+
+        .vision-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vision-content {
+            padding: 65px;
+        }
+
+        .vision-content .eyebrow {
+            color: #c6a98c;
+        }
+
+        .vision-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 500;
+            margin: 20px 0;
+        }
+
+        .vision-content p {
+            color: #d0d8d0;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 100px 10%;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 43px;
+            font-weight: 500;
+            margin: 18px 0;
+        }
+
+        .cta p {
+            color: #777d74;
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 28px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #344e40;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #263b30;
+        }
+
+        footer {
+            background: #344e40;
+            color: #f7f5ef;
+            padding: 45px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #d0d8d0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #d0d8d0;
+        }
+
+        @media (max-width: 900px) {
+            .story-section,
+            .vision {
+                grid-template-columns: 1fr;
+            }
+
+            .value-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .vision-content {
+                padding: 50px 8%;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 13px;
+            }
+
+            .hero h1 {
+                font-size: 39px;
+            }
+
+            .hero-image {
+                width: 90%;
+                height: 250px;
+            }
+
+            .story-section {
+                padding: 65px 8%;
+                gap: 30px;
+            }
+
+            .story-image {
+                height: 280px;
+            }
+
+            .story-content h2,
+            .mission h2,
+            .values-heading h2,
+            .cta h2 {
+                font-size: 32px;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vision-image {
+                height: 270px;
+            }
+
+            .vision-content h2 {
+                font-size: 33px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Page Coming Soon</h1>
-    <a href="index.html">Back to Home</a>
+
+    <header>
+        <a href="index.html" class="logo">Roamly.</a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="itineraries.html">Itineraries</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html" class="active">About</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <span class="eyebrow">Discover the story behind Roamly</span>
+        <h1>Travel Is More Than a Destination.</h1>
+        <p>
+            It is about the experiences we collect, the cultures
+            we discover and the memories that become a part of us.
+            Roamly is a space created to celebrate every part of
+            that journey.
+        </p>
+    </section>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b"
+             alt="Mountain landscape surrounded by clouds">
+    </div>
+
+    <section class="story-section">
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1"
+                 alt="Beautiful lake and mountain destination">
+        </div>
+
+        <div class="story-content">
+            <span class="eyebrow">Our story</span>
+            <h2>A World Waiting to Be Explored</h2>
+
+            <p>
+                Roamly was imagined as a digital space for people
+                who see travel as more than simply visiting places.
+                Every destination has its own character, history,
+                culture and stories waiting to be discovered.
+            </p>
+
+            <p>
+                Through destination guides, travel stories,
+                itineraries and personal journals, Roamly brings
+                different parts of the travel experience together
+                in one place.
+            </p>
+
+            <p>
+                Our idea is simple: make discovering the world
+                inspiring, organised and memorable.
+            </p>
+        </div>
+    </section>
+
+    <section class="mission">
+        <span class="eyebrow">Our purpose</span>
+        <h2>Making Every Journey Meaningful</h2>
+
+        <p>
+            Our mission is to create an engaging travel platform
+            where people can discover destinations, explore
+            different cultures, find inspiration for their next
+            adventure and keep their travel memories together.
+            We believe that the best journeys are the ones that
+            leave us with stories to tell.
+        </p>
+    </section>
+
+    <section class="values">
+        <div class="values-heading">
+            <span class="eyebrow">What makes Roamly</span>
+            <h2>What We Believe In</h2>
+        </div>
+
+        <div class="value-grid">
+
+            <div class="value-card">
+                <span class="value-number">01</span>
+                <h3>Discover</h3>
+                <p>
+                    Every destination has something unique to offer.
+                    We encourage curiosity and the excitement
+                    of discovering unfamiliar places.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <span class="value-number">02</span>
+                <h3>Experience</h3>
+                <p>
+                    Travel is about the people, food, traditions
+                    and everyday moments that make each place
+                    unforgettable.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <span class="value-number">03</span>
+                <h3>Remember</h3>
+                <p>
+                    Every journey leaves behind a story.
+                    Keeping those memories alive makes every
+                    experience even more meaningful.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="vision">
+        <div class="vision-image">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+                 alt="Traveller enjoying a scenic landscape">
+        </div>
+
+        <div class="vision-content">
+            <span class="eyebrow">Our vision</span>
+            <h2>Inspiring a World of Exploration</h2>
+
+            <p>
+                We envision Roamly as a growing digital travel
+                companion that brings inspiration, information
+                and personal storytelling together.
+                We want to encourage people to look beyond
+                familiar places, embrace new experiences and
+                create memories wherever they go.
+            </p>
+        </div>
+    </section>
+
+    <section class="cta">
+        <span class="eyebrow">Your next chapter awaits</span>
+        <h2>Where Will You Go Next?</h2>
+
+        <p>
+            Explore beautiful destinations, discover inspiring
+            stories and start planning your next memorable journey
+            with Roamly.
+        </p>
+
+        <a href="explore.html" class="cta-button">
+            EXPLORE DESTINATIONS
+        </a>
+    </section>
+
+    <footer>
+        <div>
+            <div class="footer-logo">Roamly.</div>
+            <p>Collect moments. Create stories.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="itineraries.html">Itineraries</a>
+            <a href="journal.html">Journal</a>
+        </div>
+
+        <p>© 2026 Roamly. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
+

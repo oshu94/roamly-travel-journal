@@ -1,10 +1,745 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roamly</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaipur | Roamly</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f5ef;
+            color: #283b32;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 7%;
+            background: #f7f5ef;
+            border-bottom: 1px solid #e4e1d8;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: #626b62;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #344e40;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            height: 590px;
+            background:
+                linear-gradient(rgba(35, 25, 20, 0.25), rgba(35, 25, 20, 0.55)),
+                url('https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=2000&q=85');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 70px 9%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(55px, 8vw, 95px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            max-width: 500px;
+            color: #f1eee6;
+        }
+
+        /* INTRO */
+
+        .intro {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .section-label {
+            color: #a07858;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .intro h2,
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 45px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .intro p {
+            color: #777d74;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .facts {
+            background: #eaece3;
+            padding: 35px;
+        }
+
+        .fact {
+            padding: 15px 0;
+            border-bottom: 1px solid #d4d9ce;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            gap: 15px;
+        }
+
+        .fact:last-child {
+            border-bottom: none;
+        }
+
+        .fact span:first-child {
+            color: #777d74;
+        }
+
+        .fact span:last-child {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* SECTIONS */
+
+        .section {
+            padding: 80px 9%;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin-bottom: 45px;
+        }
+
+        .section-heading p {
+            color: #777d74;
+            font-size: 14px;
+        }
+
+        /* ATTRACTIONS */
+
+        .attraction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .attraction-card img {
+            height: 310px;
+            margin-bottom: 20px;
+        }
+
+        .attraction-card h3,
+        .food-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .attraction-card p,
+        .food-card p {
+            font-size: 13px;
+            color: #777d74;
+        }
+
+        /* FOOD */
+
+        .food-section {
+            background: #eaece3;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .food-card img {
+            height: 210px;
+            margin-bottom: 17px;
+        }
+
+        .food-card h3 {
+            font-size: 21px;
+        }
+
+        /* CULTURE */
+
+        .culture {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .culture img {
+            height: 480px;
+        }
+
+        .culture-content p {
+            color: #777d74;
+            font-size: 14px;
+            margin-bottom: 17px;
+        }
+
+        .culture-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 43px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        /* SEASONS */
+
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .season {
+            border-top: 2px solid #a07858;
+            padding-top: 20px;
+        }
+
+        .season h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .season p {
+            color: #777d74;
+            font-size: 13px;
+        }
+
+        /* QUOTE */
+
+        .quote {
+            padding: 110px 10%;
+            text-align: center;
+            background: #344e40;
+            color: #f7f5ef;
+        }
+
+        .quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(27px, 4vw, 42px);
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.4;
+        }
+
+        .quote span {
+            display: block;
+            margin-top: 25px;
+            color: #c6cbbf;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #263a30;
+            color: #f7f5ef;
+            padding: 55px 9% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            padding-bottom: 35px;
+        }
+
+        .footer-brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #c2c9bf;
+            font-size: 13px;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #d0d5cc;
+        }
+
+        .copyright {
+            border-top: 1px solid #526357;
+            padding-top: 20px;
+            color: #b9c1b7;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .intro {
+                gap: 35px;
+                padding: 70px 7%;
+            }
+
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .culture {
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero {
+                height: 480px;
+                padding: 45px 7%;
+            }
+
+            .intro,
+            .culture {
+                grid-template-columns: 1fr;
+            }
+
+            .intro h2,
+            .section-heading h2,
+            .culture-content h2 {
+                font-size: 35px;
+            }
+
+            .attraction-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .attraction-card img {
+                height: 250px;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px 15px;
+            }
+
+            .food-card img {
+                height: 160px;
+            }
+
+            .season-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 20px;
+            }
+
+            .culture img {
+                height: 300px;
+            }
+
+            .section {
+                padding: 65px 7%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Page Coming Soon</h1>
-    <a href="index.html">Back to Home</a>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <a href="index.html" class="logo">Roamly.</a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html" class="active">Explore</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="itineraries.html">Itineraries</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="eyebrow">Rajasthan · India</div>
+            <h1>Jaipur</h1>
+            <p>
+                A royal city of magnificent palaces, vibrant markets,
+                historic forts and timeless Rajasthani traditions.
+            </p>
+        </div>
+    </header>
+
+    <!-- INTRODUCTION -->
+
+    <section class="intro">
+        <div>
+            <div class="section-label">The Pink City</div>
+            <h2>Where royal heritage meets vibrant culture.</h2>
+
+            <p>
+                Jaipur, the capital of Rajasthan, is a city filled with
+                architectural beauty, colourful streets and centuries
+                of royal history.
+            </p>
+
+            <p>
+                Known for its distinctive pink buildings, grand forts,
+                traditional handicrafts and delicious local cuisine,
+                Jaipur offers a wonderful glimpse into India's heritage.
+            </p>
+        </div>
+
+        <div class="facts">
+            <div class="fact">
+                <span>Country</span>
+                <span>India</span>
+            </div>
+
+            <div class="fact">
+                <span>State</span>
+                <span>Rajasthan</span>
+            </div>
+
+            <div class="fact">
+                <span>Language</span>
+                <span>Hindi</span>
+            </div>
+
+            <div class="fact">
+                <span>Currency</span>
+                <span>Indian Rupee</span>
+            </div>
+
+            <div class="fact">
+                <span>Best time</span>
+                <span>October – March</span>
+            </div>
+
+            <div class="fact">
+                <span>Known for</span>
+                <span>Forts & Palaces</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATTRACTIONS -->
+
+    <section class="section">
+        <div class="section-heading">
+            <div class="section-label">Places to discover</div>
+            <h2>Stories carved in stone and colour.</h2>
+            <p>
+                Discover the landmarks that reveal Jaipur's royal past
+                and architectural brilliance.
+            </p>
+        </div>
+
+        <div class="attraction-grid">
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1000&q=85" alt="Hawa Mahal Jaipur">
+                <h3>Hawa Mahal</h3>
+                <p>
+                    The iconic Palace of Winds, famous for its detailed
+                    pink sandstone facade and hundreds of small windows.
+                </p>
+            </div>
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?auto=format&fit=crop&w=1000&q=85" alt="Amber Fort">
+                <h3>Amber Fort</h3>
+                <p>
+                    A magnificent hilltop fort known for its grand courtyards,
+                    artistic interiors and impressive architecture.
+                </p>
+            </div>
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=1000&q=85" alt="Jal Mahal Jaipur">
+                <h3>Jal Mahal</h3>
+                <p>
+                    A beautiful palace appearing to float in the middle
+                    of Man Sagar Lake.
+                </p>
+            </div>
+
+            <div class="attraction-card">
+                <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=85" alt="Jaipur city palace">
+                <h3>City Palace</h3>
+                <p>
+                    A royal complex featuring courtyards, museums,
+                    traditional decorations and historic architecture.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOD -->
+
+    <section class="section food-section">
+        <div class="section-heading">
+            <div class="section-label">A taste of Rajasthan</div>
+            <h2>Flavours full of tradition.</h2>
+            <p>
+                Jaipur's food brings together rich flavours,
+                traditional recipes and local ingredients.
+            </p>
+        </div>
+
+        <div class="food-grid">
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=85" alt="Indian dal baati">
+                <h3>Dal Baati Churma</h3>
+                <p>A traditional Rajasthani combination of baked wheat balls, lentils and sweet churma.</p>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=700&q=85" alt="Indian curry">
+                <h3>Gatte ki Sabzi</h3>
+                <p>A popular Rajasthani curry made with gram flour dumplings.</p>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=85" alt="Indian kachori">
+                <h3>Pyaaz Kachori</h3>
+                <p>A crispy pastry filled with a flavourful spiced onion mixture.</p>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1605197161470-5d7b1c5e3f5a?auto=format&fit=crop&w=700&q=85" alt="Indian sweets">
+                <h3>Ghewar</h3>
+                <p>A traditional Rajasthani sweet with a delicate honeycomb-like texture.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CULTURE -->
+
+    <section class="section">
+        <div class="culture">
+
+            <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1000&q=85" alt="Jaipur heritage architecture">
+
+            <div class="culture-content">
+                <div class="section-label">Culture & experiences</div>
+                <h2>Traditions that bring the city to life.</h2>
+
+                <p>
+                    Jaipur is known for its colourful festivals,
+                    traditional Rajasthani music, folk dances and
+                    vibrant cultural celebrations.
+                </p>
+
+                <p>
+                    Explore local markets filled with block-printed
+                    textiles, blue pottery, jewellery and handmade crafts.
+                </p>
+
+                <p>
+                    Experience the warmth of Rajasthani hospitality
+                    and discover the traditions that continue to shape
+                    everyday life in the city.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEASONS -->
+
+    <section class="section">
+        <div class="section-heading">
+            <div class="section-label">Plan your visit</div>
+            <h2>Jaipur through the seasons.</h2>
+            <p>
+                Choose the season that suits your travel experience.
+            </p>
+        </div>
+
+        <div class="season-grid">
+
+            <div class="season">
+                <h3>Spring</h3>
+                <p>February – March</p>
+                <p>Pleasant days and comfortable weather for sightseeing.</p>
+            </div>
+
+            <div class="season">
+                <h3>Summer</h3>
+                <p>April – June</p>
+                <p>Hot temperatures, best suited for early morning visits.</p>
+            </div>
+
+            <div class="season">
+                <h3>Monsoon</h3>
+                <p>July – September</p>
+                <p>Occasional rain gives the surrounding landscape a fresh appearance.</p>
+            </div>
+
+            <div class="season">
+                <h3>Winter</h3>
+                <p>October – January</p>
+                <p>Cooler temperatures and comfortable conditions for exploring.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- QUOTE -->
+
+    <section class="quote">
+        <p>
+            "Some cities tell stories through buildings.
+            Jaipur tells them through colours, traditions and timeless beauty."
+        </p>
+        <span>Discover Jaipur with Roamly</span>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <h2>Roamly.</h2>
+                <p>
+                    Collect moments, discover places and create
+                    stories worth remembering.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="stories.html">Stories</a>
+                <a href="itineraries.html">Itineraries</a>
+                <a href="journal.html">Journal</a>
+                <a href="about.html">About</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Roamly. All rights reserved.
+        </div>
+    </footer>
+
 </body>
 </html>

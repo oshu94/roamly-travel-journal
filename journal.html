@@ -1,10 +1,578 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roamly</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Journal | Roamly</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f5ef;
+            color: #283b32;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: #f7f5ef;
+            border-bottom: 1px solid #e5e3da;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: #626a61;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #344e40;
+            font-weight: 700;
+        }
+
+        .hero {
+            padding: 75px 8% 65px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: #a07858;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 55px;
+            font-weight: 500;
+            margin: 18px 0;
+        }
+
+        .hero p {
+            color: #777d74;
+            max-width: 620px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .hero-image {
+            width: 84%;
+            height: 390px;
+            margin: 0 auto;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro {
+            padding: 85px 12%;
+            text-align: center;
+        }
+
+        .intro h2,
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .intro p {
+            max-width: 720px;
+            margin: auto;
+            color: #777d74;
+            line-height: 1.9;
+            font-size: 15px;
+        }
+
+        .entries {
+            padding: 30px 8% 90px;
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 35px;
+        }
+
+        .section-top p {
+            color: #777d74;
+            font-size: 14px;
+        }
+
+        .entry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .entry-card {
+            background: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .entry-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .entry-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .entry-content {
+            padding: 25px;
+        }
+
+        .entry-date {
+            color: #a07858;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .entry-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            font-weight: 500;
+            margin: 12px 0;
+        }
+
+        .entry-content p {
+            color: #777d74;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .entry-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #344e40;
+            border-bottom: 1px solid #a07858;
+            padding-bottom: 4px;
+        }
+
+        .write-section {
+            background: #eaece3;
+            padding: 85px 8%;
+        }
+
+        .write-container {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .write-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 500;
+            margin: 15px 0;
+        }
+
+        .write-container > p {
+            color: #777d74;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            font-size: 14px;
+        }
+
+        .journal-form {
+            background: #f7f5ef;
+            padding: 35px;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d9d9cf;
+            background: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            outline: none;
+            border-radius: 3px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #344e40;
+        }
+
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #344e40;
+            color: #fff;
+            padding: 14px 28px;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #263b30;
+        }
+
+        #form-message {
+            margin-top: 18px;
+            color: #344e40;
+            font-size: 13px;
+        }
+
+        .quote {
+            text-align: center;
+            padding: 85px 12%;
+        }
+
+        .quote h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .quote p {
+            margin-top: 20px;
+            color: #a07858;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        footer {
+            background: #344e40;
+            color: #f7f5ef;
+            padding: 45px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #d0d8d0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #d0d8d0;
+        }
+
+        @media (max-width: 900px) {
+            .entry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 13px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero-image {
+                width: 90%;
+                height: 250px;
+            }
+
+            .intro h2,
+            .section-heading {
+                font-size: 30px;
+            }
+
+            .entry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-top {
+                display: block;
+            }
+
+            .section-top p {
+                margin-top: 10px;
+            }
+
+            .write-container h2 {
+                font-size: 32px;
+            }
+
+            .journal-form {
+                padding: 22px;
+            }
+
+            .quote h2 {
+                font-size: 26px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Page Coming Soon</h1>
-    <a href="index.html">Back to Home</a>
+
+    <header>
+        <a href="index.html" class="logo">Roamly.</a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="itineraries.html">Itineraries</a>
+            <a href="journal.html" class="active">Journal</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <span class="eyebrow">Your personal travel diary</span>
+        <h1>Every Journey Has a Story.</h1>
+        <p>
+            Some places stay with us long after we leave.
+            Keep those moments alive through words, memories,
+            photographs and little details worth remembering.
+        </p>
+    </section>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e"
+             alt="Beautiful mountain landscape">
+    </div>
+
+    <section class="intro">
+        <span class="eyebrow">A collection of memories</span>
+        <h2>More Than Just Places</h2>
+        <p>
+            A travel journal is a collection of experiences.
+            It holds the streets you wandered through, the food
+            you discovered, the people you met and the moments
+            you wish could last a little longer.
+        </p>
+    </section>
+
+    <section class="entries">
+        <div class="section-top">
+            <div>
+                <span class="eyebrow">From the journal</span>
+                <h2 class="section-heading">Travel Memories</h2>
+            </div>
+            <p>A few stories from around the world.</p>
+        </div>
+
+        <div class="entry-grid">
+
+            <article class="entry-card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
+                     alt="Paris city view">
+
+                <div class="entry-content">
+                    <span class="entry-date">12 June 2026 · Paris</span>
+                    <h3>An Evening in Paris</h3>
+                    <p>
+                        The city looked different as the evening
+                        lights came alive. A quiet walk, a warm
+                        coffee and a view worth remembering.
+                    </p>
+                    <a href="paris.html" class="entry-link">EXPLORE PARIS</a>
+                </div>
+            </article>
+
+            <article class="entry-card">
+                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+                     alt="Traditional Kyoto street">
+
+                <div class="entry-content">
+                    <span class="entry-date">18 April 2026 · Kyoto</span>
+                    <h3>Finding Peace in Kyoto</h3>
+                    <p>
+                        Traditional streets, peaceful temples
+                        and beautiful gardens made every moment
+                        feel like a step away from everyday life.
+                    </p>
+                    <a href="kyoto.html" class="entry-link">EXPLORE KYOTO</a>
+                </div>
+            </article>
+
+            <article class="entry-card">
+                <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a"
+                     alt="Jaipur architecture">
+
+                <div class="entry-content">
+                    <span class="entry-date">05 March 2026 · Jaipur</span>
+                    <h3>Colours of Rajasthan</h3>
+                    <p>
+                        From grand architecture to colourful
+                        markets, Jaipur was full of details
+                        that made every street memorable.
+                    </p>
+                    <a href="jaipur.html" class="entry-link">EXPLORE JAIPUR</a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="write-section">
+        <div class="write-container">
+            <span class="eyebrow">Your story begins here</span>
+            <h2>Write a New Memory</h2>
+            <p>
+                Every journey deserves a place in your journal.
+                Add a title, destination and a few words about
+                the experience you want to remember.
+            </p>
+
+            <form class="journal-form" id="journalForm">
+
+                <div class="form-group">
+                    <label for="entryTitle">Memory Title</label>
+                    <input type="text" id="entryTitle"
+                           placeholder="Give your memory a title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination"
+                           placeholder="Where did you travel?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="travelDate">Date of Travel</label>
+                    <input type="date" id="travelDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="memory">Your Memory</label>
+                    <textarea id="memory"
+                              placeholder="Write about your experience..."
+                              required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Add Journal Entry
+                </button>
+
+                <p id="form-message" aria-live="polite"></p>
+
+            </form>
+        </div>
+    </section>
+
+    <section class="quote">
+        <h2>
+            "We travel not to escape life, but for life
+            not to escape us."
+        </h2>
+        <p>Keep exploring. Keep remembering.</p>
+    </section>
+
+    <footer>
+        <div>
+            <div class="footer-logo">Roamly.</div>
+            <p>Collect moments. Create stories.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="about.html">About</a>
+        </div>
+
+        <p>© 2026 Roamly. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
+

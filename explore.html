@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -792,83 +791,6 @@
         </p>
 
     </footer>
-
-
-    <!-- SEARCH AND FILTER FUNCTIONALITY -->
-
-    <script>
-
-        const searchInput = document.getElementById("searchInput");
-
-        const filterButtons = document.querySelectorAll(".filter-btn");
-
-        const destinationCards = document.querySelectorAll(".destination-card");
-
-        const noResults = document.getElementById("noResults");
-
-        let selectedRegion = "all";
-
-
-        function filterDestinations() {
-
-            const searchText = searchInput.value.toLowerCase().trim();
-
-            let visibleCount = 0;
-
-            destinationCards.forEach(function(card) {
-
-                const region = card.dataset.region;
-
-                const searchData = card.dataset.search;
-
-                const matchesRegion =
-                    selectedRegion === "all" ||
-                    region === selectedRegion;
-
-                const matchesSearch =
-                    searchData.includes(searchText);
-
-                if (matchesRegion && matchesSearch) {
-
-                    card.hidden = false;
-
-                    visibleCount++;
-
-                } else {
-
-                    card.hidden = true;
-
-                }
-
-            });
-
-            noResults.classList.toggle("show", visibleCount === 0);
-
-        }
-
-
-        filterButtons.forEach(function(button) {
-
-            button.addEventListener("click", function() {
-
-                filterButtons.forEach(function(btn) {
-                    btn.classList.remove("active");
-                });
-
-                button.classList.add("active");
-
-                selectedRegion = button.dataset.region;
-
-                filterDestinations();
-
-            });
-
-        });
-
-
-        searchInput.addEventListener("input", filterDestinations);
-
-    </script>
 
 </body>
 </html>
