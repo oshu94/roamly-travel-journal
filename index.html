@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roamly | Travel Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f5ef;
+            color: #283b32;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            height: 85px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e1d7;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: #4d5b51;
+        }
+
+        .nav-links a:hover {
+            color: #a46f4e;
+        }
+
+        .nav-button {
+            background: #344e40;
+            color: white !important;
+            padding: 12px 22px;
+            border-radius: 3px;
+        }
+
+        /* Hero section */
+
+        .hero {
+            margin: 35px auto;
+            width: 90%;
+            min-height: 550px;
+            border-radius: 5px;
+            background:
+                linear-gradient(90deg, rgba(15,30,24,0.65), rgba(15,30,24,0.05)),
+                url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1800')
+                center/cover;
+            display: flex;
+            align-items: center;
+            padding: 8%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 620px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 6vw, 76px);
+            line-height: 1.12;
+            font-weight: 500;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 460px;
+            margin-bottom: 30px;
+        }
+
+        .primary-button {
+            display: inline-block;
+            padding: 15px 28px;
+            background: #f7f5ef;
+            color: #283b32;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Common section */
+
+        .section {
+            padding: 75px 7%;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 32px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+        .section-heading p {
+            color: #777d74;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .text-link {
+            font-size: 13px;
+            border-bottom: 1px solid #344e40;
+            padding-bottom: 5px;
+        }
+
+        /* Destination cards */
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .destination-card {
+            overflow: hidden;
+        }
+
+        .destination-card img:hover {
+            transform: scale(1.04);
+        }
+
+        .destination-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .destination-card p {
+            color: #777d74;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        /* About Roamly */
+
+        .about-section {
+            background: #eaece3;
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .about-section > p {
+            max-width: 650px;
+            margin: auto;
+            color: #667168;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 45px;
+            margin-top: 55px;
+        }
+
+        .feature h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            font-size: 13px;
+            color: #667168;
+            line-height: 1.7;
+        }
+
+        /* Quote section */
+
+        .quote-section {
+            padding: 110px 10%;
+            text-align: center;
+            background:
+                linear-gradient(rgba(20,35,28,0.55), rgba(20,35,28,0.55)),
+                url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800')
+                center/cover;
+            color: white;
+        }
+
+        .quote-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 500;
+        }
+
+        .quote-section p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* Stories */
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .story-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .story-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-top: 14px;
+        }
+
+        .story-card p {
+            font-size: 13px;
+            color: #777d74;
+            line-height: 1.7;
+            margin-top: 8px;
+        }
+
+        /* Call to action */
+
+        .cta {
+            text-align: center;
+            padding: 80px 20px;
+            background: #eaece3;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+        .cta p {
+            color: #667168;
+            margin: 15px 0 25px;
+            font-size: 14px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #344e40;
+            color: white;
+            padding: 15px 30px;
+            font-size: 13px;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #283b32;
+            color: #f7f5ef;
+            padding: 45px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .logo {
+            font-size: 28px;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #c3ccc4;
+            margin-top: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            font-size: 13px;
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 900px) {
+            .destination-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                height: auto;
+                padding: 20px 5%;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .nav-links {
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .nav-button {
+                display: none;
+            }
+
+            .hero {
+                min-height: 450px;
+                padding: 8%;
+            }
+
+            .section {
+                padding: 55px 6%;
+            }
+
+            .section-heading {
+                align-items: start;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .section-heading h2 {
+                font-size: 32px;
+            }
+
+            .destination-grid,
+            .story-grid,
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .destination-card img {
+                height: 280px;
+            }
+
+            .about-section h2,
+            .quote-section h2,
+            .cta h2 {
+                font-size: 32px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: start;
+                gap: 25px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+
+    <header class="navbar">
+        <a href="index.html" class="logo">roamly.</a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="itineraries.html">Itineraries</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">Discover · Experience · Remember</div>
+                <h1>The world is waiting. Make it yours.</h1>
+                <p>
+                    Discover beautiful places, explore different cultures
+                    and turn every journey into a story worth remembering.
+                </p>
+                <a href="explore.html" class="primary-button">
+                    Explore Destinations
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Destinations -->
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Places worth discovering</h2>
+                    <p>Four destinations. Countless stories to experience.</p>
+                </div>
+                <a href="explore.html" class="text-link">View all destinations</a>
+            </div>
+
+            <div class="destination-grid">
+
+                <a href="paris.html" class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=700" alt="Paris Eiffel Tower">
+                    <h3>Paris</h3>
+                    <p>France · Art, romance and timeless beauty</p>
+                </a>
+
+                <a href="kyoto.html" class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=700" alt="Kyoto Japan">
+                    <h3>Kyoto</h3>
+                    <p>Japan · Tradition, temples and tranquillity</p>
+                </a>
+
+                <a href="venice.html" class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=700" alt="Venice canals">
+                    <h3>Venice</h3>
+                    <p>Italy · Canals and timeless charm</p>
+                </a>
+
+                <a href="jaipur.html" class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?w=700" alt="Jaipur architecture">
+                    <h3>Jaipur</h3>
+                    <p>India · Royal heritage and vibrant culture</p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- About Roamly -->
+
+        <section class="about-section">
+            <h2>More than just travelling.</h2>
+            <p>
+                Roamly is a space to discover destinations, experience
+                different cultures and preserve the little moments that
+                make every journey special.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>Explore</h3>
+                    <p>Discover destinations and find inspiration for your next adventure.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>Experience</h3>
+                    <p>Explore local traditions, food and stories from around the world.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>Remember</h3>
+                    <p>Keep your travel memories and create a journal of your journeys.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Travel Quote -->
+
+        <section class="quote-section">
+            <h2>Collect moments, not just miles.</h2>
+            <p>Every destination has a story waiting to be discovered.</p>
+        </section>
+
+        <!-- Latest Stories -->
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Stories from around the world</h2>
+                    <p>Travel experiences, memories and inspiration.</p>
+                </div>
+                <a href="stories.html" class="text-link">Read all stories</a>
+            </div>
+
+            <div class="story-grid">
+
+                <article class="story-card">
+                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=700" alt="Paris street">
+                    <h3>A little love letter to Paris</h3>
+                    <p>Discover the streets, cafes and little details that make Paris unforgettable.</p>
+                </article>
+
+                <article class="story-card">
+                    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=700" alt="Japanese landscape">
+                    <h3>Finding peace in Kyoto</h3>
+                    <p>Experience the beauty of traditional Japan and its peaceful surroundings.</p>
+                </article>
+
+                <article class="story-card">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=700" alt="Italian coastal town">
+                    <h3>Somewhere in Italy</h3>
+                    <p>A journey through beautiful landscapes, culture and unforgettable moments.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+
+        <section class="cta">
+            <h2>Every journey deserves a story.</h2>
+            <p>Discover your next destination and start exploring the world.</p>
+            <a href="explore.html" class="cta-button">Start Exploring</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+
+    <footer>
+        <div>
+            <a href="index.html" class="logo">roamly.</a>
+            <p>A journal of places, people and unforgettable moments.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="explore.html">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </div>
+
+        <p>© 2026 Roamly. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

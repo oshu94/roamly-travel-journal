@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Destinations | Roamly</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f5ef;
+            color: #283b32;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            min-height: 85px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e1d7;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: #4d5b51;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #a07858;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px;
+            background:
+                linear-gradient(rgba(30, 48, 39, 0.48),
+                rgba(30, 48, 39, 0.48)),
+                url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1800')
+                center/cover;
+            color: white;
+        }
+
+        .hero .eyebrow {
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 6vw, 68px);
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 620px;
+            margin: auto;
+        }
+
+        /* INTRODUCTION */
+
+        .intro {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            color: #777d74;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* SEARCH BAR */
+
+        .search-container {
+            max-width: 550px;
+            margin: 25px auto 0;
+            padding: 0 15px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 17px 20px;
+            border: 1px solid #dcd9cf;
+            background: #fffefa;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-container input:focus {
+            border-color: #344e40;
+        }
+
+        /* DESTINATION SECTION */
+
+        .destination-section {
+            padding: 35px 7% 90px;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 500;
+        }
+
+        .section-heading p {
+            color: #777d74;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* FILTER BUTTONS */
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            padding: 11px 23px;
+            border: 1px solid #c9cec4;
+            background: transparent;
+            color: #344e40;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            border-radius: 3px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #344e40;
+            color: white;
+            border-color: #344e40;
+        }
+
+        /* DESTINATION GRID */
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px 25px;
+        }
+
+        .destination-card {
+            display: block;
+            overflow: hidden;
+        }
+
+        .image-container {
+            height: 340px;
+            overflow: hidden;
+            background: #eaece3;
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            display: block;
+        }
+
+        .destination-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .card-info {
+            padding-top: 17px;
+        }
+
+        .location {
+            font-size: 11px;
+            color: #a07858;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .card-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 27px;
+            font-weight: 500;
+            margin: 8px 0;
+        }
+
+        .card-info p {
+            font-size: 13px;
+            color: #777d74;
+            line-height: 1.7;
+        }
+
+        .discover-link {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            border-bottom: 1px solid #344e40;
+            padding-bottom: 4px;
+        }
+
+        .destination-card[hidden] {
+            display: none;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 50px 10px;
+            color: #777d74;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        /* INSPIRATION BANNER */
+
+        .inspiration {
+            margin: 0 7% 85px;
+            padding: 85px 30px;
+            text-align: center;
+            color: white;
+            background:
+                linear-gradient(rgba(24, 42, 33, 0.55),
+                rgba(24, 42, 33, 0.55)),
+                url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600')
+                center/cover;
+        }
+
+        .inspiration h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+        .inspiration p {
+            font-size: 14px;
+            margin-top: 15px;
+            line-height: 1.8;
+        }
+
+        /* TRAVEL THEMES */
+
+        .themes {
+            padding: 0 7% 85px;
+        }
+
+        .themes h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .theme-card {
+            background: #eaece3;
+            padding: 30px 18px;
+            text-align: center;
+        }
+
+        .theme-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .theme-card p {
+            color: #777d74;
+            font-size: 12px;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #283b32;
+            color: #f7f5ef;
+            padding: 45px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        footer .logo {
+            font-size: 28px;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #c3ccc4;
+            margin-top: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+            font-size: 13px;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 20px 5%;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .nav-links {
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            .theme-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .image-container {
+                height: 270px;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .destination-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .intro h2,
+            .section-heading h2,
+            .themes h2 {
+                font-size: 29px;
+            }
+
+            .inspiration h2 {
+                font-size: 30px;
+            }
+
+            .theme-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">roamly.</a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="explore.html" class="active">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="itineraries.html">Itineraries</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO SECTION -->
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                DISCOVER · EXPERIENCE · REMEMBER
+            </div>
+
+            <h1>Explore the World.</h1>
+
+            <p>
+                Discover extraordinary destinations, experience
+                different cultures and find inspiration for
+                your next adventure.
+            </p>
+
+        </section>
+
+
+        <!-- INTRODUCTION AND SEARCH -->
+
+        <section class="intro">
+
+            <h2>Find Your Next Destination</h2>
+
+            <p>
+                From historic streets to peaceful landscapes,
+                discover places that inspire you.
+            </p>
+
+            <div class="search-container">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search destinations, countries or cities..."
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- DESTINATION LISTING -->
+
+        <section class="destination-section">
+
+            <div class="section-heading">
+
+                <h2>Discover by Destination</h2>
+
+                <p>
+                    Explore places, cultures and experiences
+                    from around the world.
+                </p>
+
+            </div>
+
+
+            <!-- REGION FILTERS -->
+
+            <div class="filters">
+
+                <button class="filter-btn active" data-region="all">
+                    All Destinations
+                </button>
+
+                <button class="filter-btn" data-region="asia">
+                    Asia
+                </button>
+
+                <button class="filter-btn" data-region="europe">
+                    Europe
+                </button>
+
+            </div>
+
+
+            <!-- DESTINATION CARDS -->
+
+            <div class="destination-grid" id="destinationGrid">
+
+
+                <!-- PARIS -->
+
+                <a href="paris.html"
+                   class="destination-card"
+                   data-region="europe"
+                   data-search="paris france europe art romance architecture">
+
+                    <div class="image-container">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900"
+                            alt="Eiffel Tower in Paris"
+                        >
+
+                    </div>
+
+                    <div class="card-info">
+
+                        <div class="location">
+                            FRANCE · EUROPE
+                        </div>
+
+                        <h3>Paris</h3>
+
+                        <p>
+                            Experience romantic streets, artistic
+                            treasures and timeless architecture.
+                        </p>
+
+                        <span class="discover-link">
+                            Discover Paris →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- KYOTO -->
+
+                <a href="kyoto.html"
+                   class="destination-card"
+                   data-region="asia"
+                   data-search="kyoto japan asia temples tradition culture">
+
+                    <div class="image-container">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900"
+                            alt="Traditional streets of Kyoto"
+                        >
+
+                    </div>
+
+                    <div class="card-info">
+
+                        <div class="location">
+                            JAPAN · ASIA
+                        </div>
+
+                        <h3>Kyoto</h3>
+
+                        <p>
+                            Discover ancient temples, traditional
+                            streets and the beauty of Japanese culture.
+                        </p>
+
+                        <span class="discover-link">
+                            Discover Kyoto →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- VENICE -->
+
+                <a href="venice.html"
+                   class="destination-card"
+                   data-region="europe"
+                   data-search="venice italy europe canals architecture">
+
+                    <div class="image-container">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=900"
+                            alt="Canals of Venice"
+                        >
+
+                    </div>
+
+                    <div class="card-info">
+
+                        <div class="location">
+                            ITALY · EUROPE
+                        </div>
+
+                        <h3>Venice</h3>
+
+                        <p>
+                            Wander through beautiful canals,
+                            historic architecture and charming streets.
+                        </p>
+
+                        <span class="discover-link">
+                            Discover Venice →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- JAIPUR -->
+
+                <a href="jaipur.html"
+                   class="destination-card"
+                   data-region="asia"
+                   data-search="jaipur india asia palaces heritage culture">
+
+                    <div class="image-container">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?w=900"
+                            alt="Hawa Mahal in Jaipur"
+                        >
+
+                    </div>
+
+                    <div class="card-info">
+
+                        <div class="location">
+                            INDIA · ASIA
+                        </div>
+
+                        <h3>Jaipur</h3>
+
+                        <p>
+                            Explore royal palaces, colourful markets
+                            and the rich heritage of Rajasthan.
+                        </p>
+
+                        <span class="discover-link">
+                            Discover Jaipur →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="no-results" id="noResults">
+                <h3>No destinations found.</h3>
+                <p>Try searching for another place.</p>
+            </div>
+
+        </section>
+
+
+        <!-- INSPIRATION BANNER -->
+
+        <section class="inspiration">
+
+            <h2>Find Your Own Somewhere.</h2>
+
+            <p>
+                Every destination has something special to offer.
+                All you need is the curiosity to explore.
+            </p>
+
+        </section>
+
+
+        <!-- TRAVEL THEMES -->
+
+        <section class="themes">
+
+            <h2>Find Your Kind of Journey</h2>
+
+            <div class="theme-grid">
+
+                <div class="theme-card">
+
+                    <h3>Nature Escapes</h3>
+
+                    <p>
+                        Discover beautiful landscapes
+                        and peaceful surroundings.
+                    </p>
+
+                </div>
+
+
+                <div class="theme-card">
+
+                    <h3>Historic Places</h3>
+
+                    <p>
+                        Explore architecture, heritage
+                        and stories from the past.
+                    </p>
+
+                </div>
+
+
+                <div class="theme-card">
+
+                    <h3>Food & Culture</h3>
+
+                    <p>
+                        Experience local traditions
+                        and flavours from around the world.
+                    </p>
+
+                </div>
+
+
+                <div class="theme-card">
+
+                    <h3>Coastal Getaways</h3>
+
+                    <p>
+                        Find beautiful beaches
+                        and unforgettable sea views.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div>
+
+            <a href="index.html" class="logo">roamly.</a>
+
+            <p>
+                A journal of places, people and unforgettable moments.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="stories.html">Stories</a>
+            <a href="journal.html">Journal</a>
+            <a href="about.html">About</a>
+
+        </div>
+
+
+        <p>
+            © 2026 Roamly. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- SEARCH AND FILTER FUNCTIONALITY -->
+
+    <script>
+
+        const searchInput = document.getElementById("searchInput");
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+
+        const destinationCards = document.querySelectorAll(".destination-card");
+
+        const noResults = document.getElementById("noResults");
+
+        let selectedRegion = "all";
+
+
+        function filterDestinations() {
+
+            const searchText = searchInput.value.toLowerCase().trim();
+
+            let visibleCount = 0;
+
+            destinationCards.forEach(function(card) {
+
+                const region = card.dataset.region;
+
+                const searchData = card.dataset.search;
+
+                const matchesRegion =
+                    selectedRegion === "all" ||
+                    region === selectedRegion;
+
+                const matchesSearch =
+                    searchData.includes(searchText);
+
+                if (matchesRegion && matchesSearch) {
+
+                    card.hidden = false;
+
+                    visibleCount++;
+
+                } else {
+
+                    card.hidden = true;
+
+                }
+
+            });
+
+            noResults.classList.toggle("show", visibleCount === 0);
+
+        }
+
+
+        filterButtons.forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                filterButtons.forEach(function(btn) {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                selectedRegion = button.dataset.region;
+
+                filterDestinations();
+
+            });
+
+        });
+
+
+        searchInput.addEventListener("input", filterDestinations);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris | Roamly Travel Journal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f7f5ef;
+            color: #283b32;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            min-height: 82px;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f7f5ef;
+            border-bottom: 1px solid #e5e2d9;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #344e40;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: #555e55;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #a07858;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            position: relative;
+            height: 620px;
+            margin: 28px 4%;
+            overflow: hidden;
+            border-radius: 4px;
+            background:
+                linear-gradient(rgba(20, 30, 25, 0.25), rgba(20, 30, 25, 0.55)),
+                url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=2000&q=90');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            color: #ffffff;
+            max-width: 800px;
+            padding: 25px;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 7vw, 82px);
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            max-width: 580px;
+            margin: auto;
+            color: #f1eee8;
+        }
+
+        /* COMMON SECTION */
+
+        .section {
+            padding: 85px 9%;
+        }
+
+        .section-label {
+            color: #a07858;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 500;
+            line-height: 1.2;
+            color: #344e40;
+            margin-bottom: 22px;
+        }
+
+        .section-description {
+            color: #777d74;
+            font-size: 15px;
+            max-width: 650px;
+        }
+
+        /* INTRODUCTION */
+
+        .intro {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .intro-image img {
+            height: 430px;
+            border-radius: 3px;
+        }
+
+        .intro-text p {
+            color: #777d74;
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 32px;
+            padding-top: 25px;
+            border-top: 1px solid #dedbd1;
+        }
+
+        .fact h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .fact p {
+            font-size: 12px;
+            color: #8b8d83;
+        }
+
+        /* ATTRACTIONS */
+
+        .attractions {
+            background-color: #eaece3;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading .section-description {
+            margin: auto;
+        }
+
+        .attraction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .attraction-card {
+            background-color: #f7f5ef;
+            overflow: hidden;
+        }
+
+        .attraction-card img {
+            height: 280px;
+            transition: transform 0.5s;
+        }
+
+        .attraction-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .attraction-info {
+            padding: 25px;
+        }
+
+        .attraction-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .attraction-info p {
+            color: #777d74;
+            font-size: 14px;
+        }
+
+        /* FOOD SECTION */
+
+        .food-layout {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .food-image img {
+            height: 450px;
+            border-radius: 3px;
+        }
+
+        .food-list {
+            margin-top: 25px;
+        }
+
+        .food-item {
+            padding: 17px 0;
+            border-bottom: 1px solid #dedbd1;
+        }
+
+        .food-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .food-item p {
+            font-size: 13px;
+            color: #777d74;
+        }
+
+        /* CULTURE SECTION */
+
+        .culture {
+            background-color: #344e40;
+            color: #f7f5ef;
+        }
+
+        .culture .section-title {
+            color: #f7f5ef;
+        }
+
+        .culture .section-label {
+            color: #c9a98a;
+        }
+
+        .culture .section-description {
+            color: #d0d6cd;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 45px;
+        }
+
+        .culture-item {
+            padding: 25px 20px;
+            border-top: 1px solid #829084;
+        }
+
+        .culture-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .culture-item p {
+            font-size: 13px;
+            color: #d0d6cd;
+        }
+
+        /* BEST TIME TO VISIT */
+
+        .seasons {
+            background-color: #f7f5ef;
+        }
+
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .season-card {
+            padding: 25px 20px;
+            background-color: #eaece3;
+            min-height: 190px;
+        }
+
+        .season-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .season-card .months {
+            color: #a07858;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .season-card p {
+            color: #777d74;
+            font-size: 13px;
+        }
+
+        /* QUOTE BANNER */
+
+        .quote-banner {
+            min-height: 380px;
+            margin: 0 4% 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background:
+                linear-gradient(rgba(28, 42, 34, 0.45), rgba(28, 42, 34, 0.55)),
+                url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1800&q=85');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .quote-content {
+            max-width: 700px;
+        }
+
+        .quote-content p {
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .quote-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 55px);
+            font-weight: 500;
+            line-height: 1.25;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background-color: #283b32;
+            color: #f7f5ef;
+            padding: 55px 9% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 35px;
+            flex-wrap: wrap;
+            padding-bottom: 35px;
+        }
+
+        .footer-brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #c0c8bf;
+            font-size: 13px;
+            max-width: 300px;
+        }
+
+        .footer-links h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #c0c8bf;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .footer-links a:hover {
+            color: #d1b18f;
+        }
+
+        .copyright {
+            border-top: 1px solid #536459;
+            padding-top: 20px;
+            text-align: center;
+            color: #aeb9af;
+            font-size: 12px;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .intro,
+            .food-layout {
+                gap: 35px;
+            }
+
+            .culture-grid,
+            .season-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .hero {
+                height: 500px;
+                margin: 15px 3%;
+            }
+
+            .section {
+                padding: 60px 7%;
+            }
+
+            .intro,
+            .food-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-image img,
+            .food-image img {
+                height: 300px;
+            }
+
+            .attraction-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .attraction-card img {
+                height: 240px;
+            }
+
+            .facts {
+                gap: 8px;
+            }
+
+            .fact h4 {
+                font-size: 15px;
+            }
+
+            .culture-grid,
+            .season-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .culture-item {
+                padding: 18px 12px;
+            }
+
+            .quote-banner {
+                min-height: 300px;
+                margin: 0 3% 45px;
+            }
+
+            footer {
+                padding: 45px 7% 20px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .culture-grid,
+            .season-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 10px 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+        <a href="index.html" class="logo">roamly.</a>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html" class="active">Explore</a></li>
+                <li><a href="stories.html">Stories</a></li>
+                <li><a href="itineraries.html">Itineraries</a></li>
+                <li><a href="journal.html">Journal</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-label">FRANCE · EUROPE</p>
+            <h1>Paris, The City of Light.</h1>
+            <p>
+                A city of timeless architecture, charming cafés,
+                beautiful streets and unforgettable moments.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- INTRODUCTION -->
+
+    <section class="section intro">
+
+        <div class="intro-text">
+            <p class="section-label">DISCOVER PARIS</p>
+
+            <h2 class="section-title">
+                Where every street tells a story.
+            </h2>
+
+            <p>
+                Paris is one of the world's most loved travel destinations,
+                known for its artistic heritage, historic architecture and
+                romantic atmosphere.
+            </p>
+
+            <p>
+                From the iconic Eiffel Tower to the quiet streets of
+                Montmartre, every corner of the city offers something
+                worth discovering. Whether you enjoy art, food, fashion
+                or history, Paris has something for everyone.
+            </p>
+
+            <div class="facts">
+                <div class="fact">
+                    <h4>France</h4>
+                    <p>Country</p>
+                </div>
+
+                <div class="fact">
+                    <h4>French</h4>
+                    <p>Language</p>
+                </div>
+
+                <div class="fact">
+                    <h4>Euro</h4>
+                    <p>Currency</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="intro-image">
+            <img
+                src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1000&q=85"
+                alt="Beautiful streets of Paris"
+            >
+        </div>
+
+    </section>
+
+
+    <!-- MUST VISIT PLACES -->
+
+    <section class="section attractions">
+
+        <div class="section-heading">
+            <p class="section-label">EXPLORE THE CITY</p>
+
+            <h2 class="section-title">
+                Places you shouldn't miss.
+            </h2>
+
+            <p class="section-description">
+                Discover the landmarks and neighbourhoods
+                that make Paris unforgettable.
+            </p>
+        </div>
+
+        <div class="attraction-grid">
+
+            <article class="attraction-card">
+                <img
+                    src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=1000&q=85"
+                    alt="Eiffel Tower in Paris"
+                >
+
+                <div class="attraction-info">
+                    <h3>The Eiffel Tower</h3>
+                    <p>
+                        The most recognisable symbol of Paris.
+                        Enjoy beautiful views of the city from
+                        this iconic landmark.
+                    </p>
+                </div>
+            </article>
+
+            <article class="attraction-card">
+                <img
+                    src="https://images.unsplash.com/photo-1564399579883-451a5d44ec08?auto=format&fit=crop&w=1000&q=85"
+                    alt="Louvre Museum in Paris"
+                >
+
+                <div class="attraction-info">
+                    <h3>The Louvre Museum</h3>
+                    <p>
+                        Explore one of the world's most famous
+                        museums, home to remarkable works of art
+                        and history.
+                    </p>
+                </div>
+            </article>
+
+            <article class="attraction-card">
+                <img
+                    src="https://images.unsplash.com/photo-1549144511-f099e773c147?auto=format&fit=crop&w=1000&q=85"
+                    alt="Notre Dame Cathedral"
+                >
+
+                <div class="attraction-info">
+                    <h3>Notre-Dame Cathedral</h3>
+                    <p>
+                        Admire the remarkable Gothic architecture
+                        and rich history of this famous cathedral.
+                    </p>
+                </div>
+            </article>
+
+            <article class="attraction-card">
+                <img
+                    src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1000&q=85"
+                    alt="Montmartre neighbourhood in Paris"
+                >
+
+                <div class="attraction-info">
+                    <h3>Montmartre</h3>
+                    <p>
+                        Wander through artistic streets, discover
+                        charming cafés and experience a different
+                        side of Paris.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+
+    <!-- FOOD SECTION -->
+
+    <section class="section food-layout">
+
+        <div class="food-image">
+            <img
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=85"
+                alt="Freshly baked French bread"
+            >
+        </div>
+
+        <div class="food-text">
+            <p class="section-label">A TASTE OF FRANCE</p>
+
+            <h2 class="section-title">
+                A little taste of Paris.
+            </h2>
+
+            <p class="section-description">
+                French cuisine is an important part of the Parisian
+                experience. From bakery favourites to sweet treats,
+                there is always something delicious to discover.
+            </p>
+
+            <div class="food-list">
+
+                <div class="food-item">
+                    <h3>Croissant</h3>
+                    <p>
+                        A buttery, flaky pastry often enjoyed
+                        with morning coffee.
+                    </p>
+                </div>
+
+                <div class="food-item">
+                    <h3>Macarons</h3>
+                    <p>
+                        Delicate French almond cookies with
+                        colourful fillings.
+                    </p>
+                </div>
+
+                <div class="food-item">
+                    <h3>Baguette</h3>
+                    <p>
+                        The classic French bread found in
+                        bakeries across the city.
+                    </p>
+                </div>
+
+                <div class="food-item">
+                    <h3>Crêpes</h3>
+                    <p>
+                        Thin French pancakes served with
+                        sweet or savoury fillings.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- CULTURE SECTION -->
+
+    <section class="section culture">
+
+        <div class="section-heading">
+            <p class="section-label">THE PARISIAN WAY OF LIFE</p>
+
+            <h2 class="section-title">
+                More than just a destination.
+            </h2>
+
+            <p class="section-description">
+                Experience the culture, creativity and everyday
+                charm that make Paris special.
+            </p>
+        </div>
+
+        <div class="culture-grid">
+
+            <div class="culture-item">
+                <h3>Café Culture</h3>
+                <p>
+                    Spend slow mornings at outdoor cafés
+                    and enjoy the rhythm of Parisian life.
+                </p>
+            </div>
+
+            <div class="culture-item">
+                <h3>Art & Museums</h3>
+                <p>
+                    Discover artistic masterpieces, galleries
+                    and creative spaces throughout the city.
+                </p>
+            </div>
+
+            <div class="culture-item">
+                <h3>Fashion & Design</h3>
+                <p>
+                    Explore elegant boutiques, designer
+                    collections and stylish streets.
+                </p>
+            </div>
+
+            <div class="culture-item">
+                <h3>Architecture</h3>
+                <p>
+                    Admire historic buildings, beautiful
+                    bridges and iconic city squares.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BEST TIME TO VISIT -->
+
+    <section class="section seasons">
+
+        <div class="section-heading">
+            <p class="section-label">PLAN YOUR JOURNEY</p>
+
+            <h2 class="section-title">
+                When should you visit Paris?
+            </h2>
+
+            <p class="section-description">
+                Every season brings a different atmosphere
+                and a new way to experience the city.
+            </p>
+        </div>
+
+        <div class="season-grid">
+
+            <div class="season-card">
+                <h3>Spring</h3>
+                <p class="months">MARCH – MAY</p>
+                <p>
+                    Pleasant weather, blooming gardens
+                    and beautiful outdoor walks.
+                </p>
+            </div>
+
+            <div class="season-card">
+                <h3>Summer</h3>
+                <p class="months">JUNE – AUGUST</p>
+                <p>
+                    Longer days, outdoor events and
+                    lively streets across the city.
+                </p>
+            </div>
+
+            <div class="season-card">
+                <h3>Autumn</h3>
+                <p class="months">SEPTEMBER – NOVEMBER</p>
+                <p>
+                    Colourful leaves, cooler weather
+                    and a cosy city atmosphere.
+                </p>
+            </div>
+
+            <div class="season-card">
+                <h3>Winter</h3>
+                <p class="months">DECEMBER – FEBRUARY</p>
+                <p>
+                    Chilly days, festive decorations
+                    and charming winter cafés.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRAVEL QUOTE -->
+
+    <section class="quote-banner">
+
+        <div class="quote-content">
+            <p>YOUR NEXT CHAPTER BEGINS HERE</p>
+
+            <h2>
+                Paris is not just a destination.
+                It's a feeling.
+            </h2>
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <h2>roamly.</h2>
+
+                <p>
+                    Collect moments, discover places
+                    and create your own travel story.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="explore.html">Destinations</a>
+                <a href="stories.html">Travel Stories</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Discover</h3>
+                <a href="itineraries.html">Itineraries</a>
+                <a href="journal.html">My Journal</a>
+                <a href="about.html">About Roamly</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Roamly. Made for the love of travelling.
+        </div>
+
+    </footer>
+
+</body>
+</html>
